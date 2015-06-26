@@ -12,7 +12,7 @@ Extensively tested for compatibility with [jose.4.j](https://bitbucket.org/b_c/j
 Newtonsoft.Json
 
 ## Installation
-The easiest way to install is via NuGet. See [here](https://www.nuget.org/packages/Portable.JWT/). Else, you can download and compile it yourself.
+The easiest way to install is via NuGet. See [here](https://www.nuget.org/packages/Xamarin.JOSE.JWT/). Else, you can download and compile it yourself.
 
 ## Foreword
 Originally forked from https://github.com/johnsheehan/jwt . Almost re-written from scratch to support JWT encryption capabilities and unified interface for encoding/decoding/encryption 
