@@ -2,15 +2,14 @@
 <package >
   <metadata>
     <id>Xamarin.JOSE.JWT</id>
-    <version>1.0.1</version>
-    <title>Xamarin Jose JWT</title>
+    <version>1.0.3</version>
     <authors>Mitja Bombac</authors>
     <owners>Mitja Bombac</owners>
+	<language>en-US</language>
     <licenseUrl>https://raw.github.com/senzacionale/xamarin-jose-jwt/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/senzacionale/xamarin-jose-jwt</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <releaseNotes>RSA-OAEP-256 (using SHA-256 hash) added to match latest spec version.</releaseNotes>	
-    <summary>Xamarin Ultimate Javascript Object Signing and Encryption (JOSE) and JSON Web Token (JWT) Implementation for .NET 4.0+ Minimallistic. Full suite of signature and encryption algorithms. JSON parsing agnostic. Library for generating, decoding and encryption of JSON Web Tokens. Build for Xamarin Assemblies (http://developer.xamarin.com/guides/android/under_the_hood/assemblies/)</summary>
+	<summary>Xamarin Ultimate Javascript Object Signing and Encryption (JOSE) and JSON Web Token (JWT) Implementation for .NET 4.0+ Minimallistic. Full suite of signature and encryption algorithms. JSON parsing agnostic. Library for generating, decoding and encryption of JSON Web Tokens. Build for Xamarin Assemblies (http://developer.xamarin.com/guides/android/under_the_hood/assemblies/)</summary>
     <description>Xamarin Javascript Object Signing and Encryption (JOSE) and JSON Web Token (JWT) Implementation for .NET 4.0+ 
 	
 Ultimate Javascript Object Signing and Encryption (JOSE) and JSON Web Token (JWT) Implementation for .NET 4.0+ Minimallistic. Full suite of signature and encryption algorithms.
@@ -44,8 +43,8 @@ Compression:
 
 - DEFLATE compression
     </description>
-    <copyright>Copyright senzacionale 2015</copyright>
-    <language>en-US</language>
+    <releaseNotes>RSA-OAEP-256 (using SHA-256 hash) added to match latest spec version.</releaseNotes>
+    <copyright>Copyright 2015</copyright>
     <tags>jose jwt json jwa jwe jws aes cbc gcm rsa hmac sha rsassa pss rsaes oaep pkcs1-v1_5 es elliptic curve diffe hellman agreement ecdsa key wrap kw ecdh pbes pbes2 pbkdf pbkdf2 password based encryption javascript object signing</tags>
   </metadata>
 </package>

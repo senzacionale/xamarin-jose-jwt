@@ -1,16 +1,20 @@
-
 #ignore thumbnails created by windows
 Thumbs.db
 #Ignore files build by Visual Studio
+.DS_Store
+*.userprefs
 *.user
 *.vspscc
 *.suo
 *.bak
 [Bb]in
 [Dd]ebug*/
+bin/
 obj/
 [Rr]elease*/
 _ReSharper*/
 [Tt]est[Rr]esult*
 package/
+packages/
 *.nupkg
+UpgradeLog*.htm
