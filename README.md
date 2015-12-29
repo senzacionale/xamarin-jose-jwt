@@ -1,5 +1,7 @@
 # Xamarin Ultimate Javascript Object Signing and Encryption (JOSE) and JSON Web Token (JWT) Implementation for .NET 4.0+
 
+# NOT MAINTAINED ANYMORE. WILL TRY TO UPDATE IT IF I WILL HAVE TIME!
+
 This is copy of https://github.com/dvsekhvalnov/jose-jwt build for Xamarin Assemblies (http://developer.xamarin.com/guides/android/under_the_hood/assemblies/)
 
 Minimallistic library for generating, decoding and encryption [JSON Web Tokens](http://tools.ietf.org/html/draft-jones-json-web-token-10). Supports full suite 
