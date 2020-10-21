@@ -48,7 +48,7 @@ AES Key Wrap implementation ideas and test data from http://www.cryptofreak.org/
 - DEFLATE compression
 
 ##### Notes:
-\* It appears that Microsoft CNG implementation of BCryptSecretAgreement/NCryptSecretAgreement contains a bug for calculating Elliptic Curve Diffie–Hellman secret agreement
+\* It appears that Microsoft CNG implementation of BCryptSecretAgreement/NCryptSecretAgreement contains a bug for calculating Elliptic Curve Diffieâ€“Hellman secret agreement
 on keys higher than 256 bit (P-384 and P-521 NIST curves correspondingly). At least produced secret agreements do not match any other implementation in different languages.
 Technically it is possible to use ECDH-ES or ECDH-ES+AES Key Wrap family with A192CBC-HS384 and A256CBC-HS512 but most likely produced JWT tokens will not be compatible with other platforms and therefore can't be decoded correctly.
 
@@ -99,7 +99,7 @@ var payload = new Dictionary<string, object>()
 
 var privateKey=new X509Certificate2("my-key.p12", "password", X509KeyStorageFlags.Exportable | X509KeyStorageFlags.MachineKeySet).PrivateKey as RSACryptoServiceProvider;
 
-string token=Jose.JWT.Encode(json, privateKey, JwsAlgorithm.RS256);
+string token=Jose.JWT.Encode(payload, privateKey, JwsAlgorithm.RS256);
 ```
 
 #### ES-\*  family
@@ -119,7 +119,7 @@ byte[] d = { 42, 148, 231, 48, 225, 196, 166, 201, 23, 190, 229, 199, 20, 39, 22
 
 var privateKey=EccKey.New(x, y, d);
 
-string token=Jose.JWT.Encode(json, privateKey, JwsAlgorithm.ES256);
+string token=Jose.JWT.Encode(payload, privateKey, JwsAlgorithm.ES256);
 ```
 
 ### Creating encrypted Tokens
@@ -135,7 +135,7 @@ var payload = new Dictionary<string, object>()
 
 var publicKey=new X509Certificate2("my-key.p12", "password").PublicKey.Key as RSACryptoServiceProvider;
 
-string token = Jose.JWT.Encode(json, publicKey, JweAlgorithm.RSA_OAEP, JweEncryption.A256GCM);
+string token = Jose.JWT.Encode(payload, publicKey, JweAlgorithm.RSA_OAEP, JweEncryption.A256GCM);
 ```
 
 #### DIR direct pre-shared symmetric key family of algorithms 
@@ -150,7 +150,7 @@ var payload = new Dictionary<string, object>()
 
 var secretKey = new byte[]{164,60,194,0,161,189,41,38,130,89,141,164,45,170,159,209,69,137,243,216,191,131,47,250,32,107,231,117,37,158,225,234};
 
-string token = Jose.JWT.Encode(json, secretKey, JweAlgorithm.DIR, JweEncryption.A128CBC_HS256);
+string token = Jose.JWT.Encode(payload, secretKey, JweAlgorithm.DIR, JweEncryption.A128CBC_HS256);
 ```
 
 #### AES Key Wrap key management family of algorithms
@@ -165,7 +165,7 @@ var payload = new Dictionary<string, object>()
 
 var secretKey = new byte[]{164,60,194,0,161,189,41,38,130,89,141,164,45,170,159,209,69,137,243,216,191,131,47,250,32,107,231,117,37,158,225,234};
 
-string token = Jose.JWT.Encode(json, secretKey, JweAlgorithm.A256KW, JweEncryption.A256CBC_HS512);
+string token = Jose.JWT.Encode(payload, secretKey, JweAlgorithm.A256KW, JweEncryption.A256CBC_HS512);
 ```
 
 #### AES GCM Key Wrap key management family of algorithms
@@ -180,7 +180,7 @@ var payload = new Dictionary<string, object>()
 
 var secretKey = new byte[]{164,60,194,0,161,189,41,38,130,89,141,164,45,170,159,209,69,137,243,216,191,131,47,250,32,107,231,117,37,158,225,234};
 
-string token = Jose.JWT.Encode(json, secretKey, JweAlgorithm.A256GCMKW, JweEncryption.A256CBC_HS512);
+string token = Jose.JWT.Encode(payload, secretKey, JweAlgorithm.A256GCMKW, JweEncryption.A256CBC_HS512);
 ```
 
 #### ECDH-ES and ECDH-ES with AES Key Wrap key management family of algorithms
@@ -199,7 +199,7 @@ byte[] y = { 131, 116, 8, 14, 22, 150, 18, 75, 24, 181, 159, 78, 90, 51, 71, 159
 
 var publicKey=EccKey.New(x, y, usage:CngKeyUsages.KeyAgreement);
 
-string token = Jose.JWT.Encode(json, publicKey, JweAlgorithm.ECDH_ES, JweEncryption.A256GCM);
+string token = Jose.JWT.Encode(payload, publicKey, JweAlgorithm.ECDH_ES, JweEncryption.A256GCM);
 ```
 
 #### PBES2 using HMAC SHA with AES Key Wrap key management family of algorithms
@@ -212,7 +212,7 @@ var payload = new Dictionary<string, object>()
     { "exp", 1300819380 }
 };  	
 
-string token = Jose.JWT.Encode(json, "top secret", JweAlgorithm.A256KW, JweEncryption.A256CBC_HS512);
+string token = Jose.JWT.Encode(payload, "top secret", JweAlgorithm.A256KW, JweEncryption.A256CBC_HS512);
 ```
 
 #### Optional compressing payload before encrypting
@@ -227,7 +227,7 @@ var payload = new Dictionary<string, object>()
 
 var publicKey=new X509Certificate2("my-key.p12", "password").PublicKey.Key as RSACryptoServiceProvider;
 
-string token = Jose.JWT.Encode(json, publicKey, JweAlgorithm.RSA1_5, JweEncryption.A128CBC_HS256, JweCompression.DEF);
+string token = Jose.JWT.Encode(payload, publicKey, JweAlgorithm.RSA1_5, JweEncryption.A128CBC_HS256, JweCompression.DEF);
 ```
 
 ### Verifying and Decoding Tokens
@@ -297,7 +297,7 @@ var headers = new Dictionary<string, object>()
 
 var secretKey = new byte[]{164,60,194,0,161,189,41,38,130,89,141,164,45,170,159,209,69,137,243,216,191,131,47,250,32,107,231,117,37,158,225,234};
 
-string token = Jose.JWT.Encode(json, secretKey, JweAlgorithm.A256GCMKW, JweEncryption.A256CBC_HS512, extraHeaders: headers);
+string token = Jose.JWT.Encode(payload, secretKey, JweAlgorithm.A256GCMKW, JweEncryption.A256CBC_HS512, extraHeaders: headers);
 ```
 
 ```C#
@@ -316,7 +316,7 @@ var headers = new Dictionary<string, object>()
 
 var privateKey=new X509Certificate2("my-key.p12", "password", X509KeyStorageFlags.Exportable | X509KeyStorageFlags.MachineKeySet).PrivateKey as RSACryptoServiceProvider;
 
-string token=Jose.JWT.Encode(json, privateKey, JwsAlgorithm.RS256, extraHeaders: headers);
+string token=Jose.JWT.Encode(payload, privateKey, JwsAlgorithm.RS256, extraHeaders: headers);
 ```
 
 \* For backwards compatibility signing uses pre-configured `typ: 'JWT'` header by default. 
